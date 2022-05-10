@@ -45,7 +45,7 @@ public class HomeController {
 		// view(...) : 렌더링에 사용할 템플릿 이름 지정
 		return Mono.just(Rendering.view("home.html") 
 				// modelAttribute(...) : 템플릿에 사용될 데이터 지정
-				.modelAttribute("items", this.itemRepository.findAll())
+				.modelAttribute("items", this.itemRepository.findAll().doOnNext(System.out::println))
 				// findById(...).defaultIfEmpty(...)
 				// : 몽고디비에서 장바구니를 조회해서 없으면 새로운 Cart 생성
 				// 전형적인 리액터 사용법
@@ -57,9 +57,14 @@ public class HomeController {
 
 	// 장바구니에 상품 추가	
 	@PostMapping("/add/{id}")
+	// 리액터 로깅 적용
 	Mono<String> addToCart(@PathVariable String id) {
-		return this.cartService.addToCart("My Cart", id)
-				.thenReturn("redirect:/");
+		return this.inventoryService.addItemToCart("My Cart", id)
+			.thenReturn("redirect:/");
+	}
+//	Mono<String> addToCart(@PathVariable String id) {
+//		return this.cartService.addToCart("My Cart", id)
+//				.thenReturn("redirect:/");
 		/* 장바구니를 조회하고 상품을 담는 기능을 서비스로 추출
 		return this.cartRepository.findById("My Cart")
 				.defaultIfEmpty(new Cart("My Cart"))
@@ -89,7 +94,7 @@ public class HomeController {
 				.thenReturn("redirect:/");
 		 */
 
-	}
+//	}
 
 //	// Example 쿼리로 구현된 서비스를 사용하는 웹 컨트롤러
 //	@GetMapping("/search")

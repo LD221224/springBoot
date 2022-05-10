@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.ReactiveFluentMongoOperations;
 import org.springframework.stereotype.Service;
 
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import static org.springframework.data.mongodb.core.query.Criteria.byExample;
 import static org.springframework.data.mongodb.core.query.Criteria.where;
@@ -15,13 +16,16 @@ import static org.springframework.data.mongodb.core.query.Query.query;
 @Service
 public class InventoryService {
 	private ItemRepository repository;
+	private CartRepository cartRepository;
 //	private ItemByExampleRepository exampleRepository;
 	private ReactiveFluentMongoOperations fluentOperations;
 
 	InventoryService(ItemRepository repository,
+			CartRepository cartRepository,
 //			ItemByExampleRepository exampleRepository,
 			ReactiveFluentMongoOperations fluentOperations){
 		this.repository = repository;
+		this.cartRepository = cartRepository;
 //		this.exampleRepository = exampleRepository;
 		this.fluentOperations = fluentOperations;
 	}
@@ -114,5 +118,34 @@ public class InventoryService {
 		return fluentOperations.query(Item.class) //
 				.matching(query(byExample(Example.of(item, matcher)))) 
 				.all();
+	}
+	
+	// addItemToCart()에 리액터 로깅 적용
+	Mono<Cart> addItemToCart(String cartId, String itemId) {
+		return this.cartRepository.findById(cartId)
+				.log("foundCart")
+				.defaultIfEmpty(new Cart(cartId))
+				.log("emptyCart")
+				.flatMap(cart -> cart.getCartItems().stream()
+						.filter(cartItem -> cartItem.getItem()
+								.getId().equals(itemId))
+						.findAny()
+						.map(cartItem -> {
+							cartItem.increment();
+							return Mono.just(cart).log("newCartItem");
+						})
+						.orElseGet(() -> {
+							return this.repository.findById(itemId)
+									.log("fetchedItem")
+									.map(item -> new CartItem(item))
+									.log("cartItem")
+									.map(cartItem -> {
+										cart.getCartItems().add(cartItem);
+										return cart;
+									}).log("addedCartItem");
+						}))
+				.log("cartWithAnotherItem")
+				.flatMap(cart -> this.cartRepository.save(cart))
+				.log("savedCart");
 	}
 }

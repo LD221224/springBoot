@@ -49,6 +49,28 @@
 			<groupId>org.mongodb</groupId>
 			<artifactId>mongodb-driver-sync</artifactId>
 		</dependency>
+		<!-- DevTools 개발자 도구
+			애플리케이션 재시작, 리로드 자동화
+			환경설정 정보 기본값 제공
+			자동설정 변경사항 로깅
+			정적 자원 제외
+			라이브 리로드 지원
+		 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		
+		<!-- 블록하운드
+			블로킹 메소드 검출
+		 -->
+		 <dependency>
+		 	<groupId>io.projectreactor.tools</groupId>
+		 	<artifactId>blockhound</artifactId>
+		 	<version>1.0.6.RELEASE</version>
+		 </dependency>
 	</dependencies>
 
 	<build>
