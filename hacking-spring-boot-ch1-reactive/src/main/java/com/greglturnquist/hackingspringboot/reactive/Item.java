@@ -27,6 +27,11 @@ public class Item {
 		this.description = description;
 		this.price = price;
 	}
+	
+    Item(String id, String name, String description, double price) {
+        this(name, description, price);
+        this.id = id;
+    }
 
 	public String getId() {
 		return id;
@@ -100,22 +105,37 @@ public class Item {
 		this.active = active;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Item other = (Item) obj;
-		return active == other.active && availableUnits == other.availableUnits
-				&& Objects.equals(description, other.description)
-				&& Objects.equals(distributorRegion, other.distributorRegion) && Objects.equals(id, other.id)
-				&& Objects.equals(location, other.location) && Objects.equals(name, other.name)
-				&& Double.doubleToLongBits(price) == Double.doubleToLongBits(other.price)
-				&& Objects.equals(releaseDate, other.releaseDate);
-	}
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (this == obj)
+//			return true;
+//		if (obj == null)
+//			return false;
+//		if (getClass() != obj.getClass())
+//			return false;
+//		Item other = (Item) obj;
+//		return active == other.active && availableUnits == other.availableUnits
+//				&& Objects.equals(description, other.description)
+//				&& Objects.equals(distributorRegion, other.distributorRegion) && Objects.equals(id, other.id)
+//				&& Objects.equals(location, other.location) && Objects.equals(name, other.name)
+//				&& Double.doubleToLongBits(price) == Double.doubleToLongBits(other.price)
+//				&& Objects.equals(releaseDate, other.releaseDate);
+//	}
+	
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Item item = (Item) o;
+        return Double.compare(item.price, price) == 0 &&
+            Objects.equals(id, item.id) &&
+            Objects.equals(name, item.name) &&
+            Objects.equals(description, item.description);
+    }
 
 	@Override
 	public int hashCode() {
@@ -123,10 +143,19 @@ public class Item {
 				releaseDate);
 	}
 
-	@Override
-	public String toString() {
-		return "Item [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price
-				+ ", distributorRegion=" + distributorRegion + ", releaseDate=" + releaseDate + ", availableUnits="
-				+ availableUnits + ", location=" + location + ", active=" + active + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Item [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price
+//				+ ", distributorRegion=" + distributorRegion + ", releaseDate=" + releaseDate + ", availableUnits="
+//				+ availableUnits + ", location=" + location + ", active=" + active + "]";
+//	}
+    @Override
+    public String toString() {
+        return "Item{" +
+            "id='" + id + '\'' +
+            ", name='" + name + '\'' +
+            ", description='" + description + '\'' +
+            ", price=" + price +
+            '}';
+    }
 }

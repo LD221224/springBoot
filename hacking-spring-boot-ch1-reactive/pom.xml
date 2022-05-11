@@ -65,12 +65,13 @@
 		
 		<!-- 블록하운드
 			블로킹 메소드 검출
-		 -->
+		-->
 		 <dependency>
 		 	<groupId>io.projectreactor.tools</groupId>
 		 	<artifactId>blockhound</artifactId>
 		 	<version>1.0.6.RELEASE</version>
 		 </dependency>
+
 	</dependencies>
 
 	<build>

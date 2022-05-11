@@ -18,6 +18,10 @@ class CartItem {
 	public void increment() {
 		this.quantity++;
 	}
+	
+	public void decrement() {
+		this.quantity--;
+	}
 
 	public Item getItem() {
 		return item;
