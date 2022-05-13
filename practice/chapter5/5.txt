@@ -1,0 +1,42 @@
+* 실행 가능한 JAR 파일 생성 명령어
+>mvnw package
+
+* mave-jar-plugin : 컴파일된 코드를 JAR 파일로 만들어 target 디렉토리 아래에 둔다.
+Building jar: C:\Users\dayeo\git\springBoot\hacking-spring-boot-ch1-reactive\target\hacking-spr
+ing-boot-ch1-reactive-0.0.1-SNAPSHOT.jar
+
+* spring-boot-maven-plugin : 컴파일된 파일 모음인 JAR 파일과 
+							애플리케이션이 사용하는 의존 라이브러리와 특별한 스프링 부트 코드 일부를 함께 묶어서
+							새 JAR 파일 생성 후 기존 JAR 파일을 대체한다.
+							이 파일은 실행 가능한 JAR 파일이다.
+Replacing main artifact with repackaged archive
+
+* 실행 가능한 JAR 파일 실행 명령어
+>java -jar target\hacking-spring-boot-ch1-reactive-0.0.1-SNAPSHOT.jar
+
+
+* 계층적 JAR 빌드 명령어
+>mvnw clean package
+
+* 컨테이너 이미지 빌드 명령어
+>docker build . --tag hacking-with-spring-boot
+
+* 도커로 애플리케이션 실행하는 명령어
+>docker run -it -p 8080:8080 hacking-with-spring-boot:latest
+
+* spring-boot:build-image로 도커 이미지 빌드 명령어
+>mvnw spring-boot:build-image
+
+* 페이키토 도커 이미지 실행 명령어
+>docker run -it -p 8080:8080 docker.io/library/hacking-spring-boot-ch1-reactive:0.0.1-SNAPSHOT
+
+* 계층 기반 Dockerfile 이미지
+	- 장점 : Dockerfile을 직접 작성하므로 이미지 빌드 전체 과정 제어 가능
+			스프링 부트에서 계층화를 제공하므로 빌드 과정 최적화 가능
+	- 단점 : 컨테이너 직접 관리
+			컨테이너 빌드 과정이 완전하지 않으면 보안에 취약한 계층 존재 위험
+* 페이키토 빌드팩 기반 이미지
+	- 장점 : Dockerfile을 직접 다룰 필요 없음
+			최신 패치와 SSL을 포함한 업계 표준 컨테이너 기술이 빌드 과정에 포함
+			개발에 더 집중 가능
+	- 단점 : Dockerfile에 비해 제어할 수 있는 것이 적음
