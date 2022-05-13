@@ -15,6 +15,7 @@
 	<description>Demo project for Hacking with Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>
+		
 	</properties>
 	<dependencies>
 		<dependency>
@@ -71,7 +72,16 @@
 		 	<artifactId>blockhound</artifactId>
 		 	<version>1.0.6.RELEASE</version>
 		 </dependency>
-
+		 
+		 <!-- 스프링 부트 액추에이터 추가 
+		 	애플리케이션 정상상태 점검
+		 	http://localhost:8080/actuator/health
+		 	몽고디비 상태 및 버전 정보, 디스크 상태 및 용량 정보
+		 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -79,6 +89,19 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!-- 스프링 부트 메이븐 플러그인에 내장된 도커 지원 기능 활용
+					스프링 부트가 JAR 파일을 만들 때 계층화를 적용하게 만든다.
+				 -->
+				 <configuration>
+				 	<layers>
+				 		<enabled>true</enabled>
+				 	</layers>
+				 </configuration>
+			</plugin>
+			<!-- git-commit-id-plugin 추가 -->
+			<plugin>
+				<groupId>pl.project13.maven</groupId>
+				<artifactId>git-commit-id-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
