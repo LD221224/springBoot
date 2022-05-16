@@ -1,0 +1,6 @@
+* API 포털 문서 생성
+>mvnw clean prepare-package
+
+* API 포털 문서 열기
+>mvnw spring-boot:run
+http://localhost:8080/docs/index.html
