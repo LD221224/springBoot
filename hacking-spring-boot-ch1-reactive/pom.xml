@@ -63,7 +63,6 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
-		
 		<!-- 블록하운드
 			블로킹 메소드 검출
 		-->
@@ -72,7 +71,6 @@
 		 	<artifactId>blockhound</artifactId>
 		 	<version>1.0.6.RELEASE</version>
 		 </dependency>
-		 
 		 <!-- 스프링 부트 액추에이터 추가 
 		 	애플리케이션 정상상태 점검
 		 	http://localhost:8080/actuator/health
@@ -82,13 +80,23 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-		
 		<!-- spring-restdocs-webtestclient 의존관계 추가 -->
 		<dependency>
 			<groupId>org.springframework.restdocs</groupId>
 			<artifactId>spring-restdocs-webtestclient</artifactId>
 			<scope>test</scope>
 		</dependency>		
+		<!-- 스프링 헤이티오스 의존관계 추가 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-hateoas</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-web</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 	</dependencies>
 
 	<build>

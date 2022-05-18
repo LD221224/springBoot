@@ -4,3 +4,13 @@
 * API 포털 문서 열기
 >mvnw spring-boot:run
 http://localhost:8080/docs/index.html
+
+* 스프링 레스트 독 : 링크가 존재하는지 검증한 후 링크를 담고 있는 links.adoc 파일 생성
+하이퍼미디어 JSON
+/hacking-spring-boot-ch1-reactive/target/generated-snippets/findOne-hypermedia/response-body.adoc
+하이퍼미디어 링크 정보
+/hacking-spring-boot-ch1-reactive/target/generated-snippets/findOne-hypermedia/links.adoc
+
+* affordance
+어떤 서비스와 시스템을 만들 때 사용자가 디자인된 물건을 직관적으로 보기만 해도 
+어떻게 사용할지 대략 짐작해 사용하게끔 할 수 있게 하는 것이 행동유도성 디자인이다.

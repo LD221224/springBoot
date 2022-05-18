@@ -18,3 +18,85 @@ HTTPie를 사용하시나요? 다음 명령을 실행해보세요.
 include::{snippets}/findAll/httpie-request.adoc[]
 
 동일한 응답 본문이 반환됩니다. curl과 HTTPie 중 좋아하는 것을 사용하시면 됩니다.
+
+'''
+== 상품
+
+=== 한 건 조회
+
+==== 요청
+
+===== http
+
+include::{snippets}/findOne-hypermedia/http-request.adoc[]
+
+===== curl
+
+include::{snippets}/findOne-hypermedia/curl-request.adoc[]
+
+===== HTTPie
+
+include::{snippets}/findOne-hypermedia/httpie-request.adoc[]
+
+==== 응답
+
+include::{snippets}/findOne-hypermedia/http-response.adoc[]
+
+===== 응답 본문
+
+include::{snippets}/findOne-hypermedia/response-body.adoc[]
+
+===== 링크
+
+include::{snippets}/findOne-hypermedia/links.adoc[]
+
+'''
+== affordances
+
+=== aggregate-root-affordances
+
+==== 요청
+
+===== http
+
+include::{snippets}/aggregate-root-affordances/http-request.adoc[]
+
+===== curl
+
+include::{snippets}/aggregate-root-affordances/curl-request.adoc[]
+
+===== HTTPie
+
+include::{snippets}/aggregate-root-affordances/httpie-request.adoc[]
+
+==== 응답
+
+include::{snippets}/aggregate-root-affordances/http-response.adoc[]
+
+===== 응답 본문
+
+include::{snippets}/aggregate-root-affordances/response-body.adoc[]
+
+=== single-item-affordances
+
+==== 요청
+
+===== http
+
+include::{snippets}/single-item-affordances/http-request.adoc[]
+
+===== curl
+
+include::{snippets}/single-item-affordances/curl-request.adoc[]
+
+===== HTTPie
+
+include::{snippets}/single-item-affordances/httpie-request.adoc[]
+
+==== 응답
+
+include::{snippets}/single-item-affordances/http-response.adoc[]
+
+===== 응답 본문
+
+include::{snippets}/single-item-affordances/response-body.adoc[]
