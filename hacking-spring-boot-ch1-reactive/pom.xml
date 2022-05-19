@@ -15,8 +15,22 @@
 	<description>Demo project for Hacking with Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>
-		
 	</properties>
+	<!-- 테스트컨테이너 버전 지정
+		테스트 종료시 사용된 여러 컨테이너 자원을 남기지 않음
+	 -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.testcontainers</groupId>
+				<artifactId>testcontainers-bom</artifactId>
+				<version>1.15.2</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+		
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -96,6 +110,25 @@
 					<artifactId>spring-boot-starter-web</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+		<!-- 래빗엠큐 테스트컨테이너 의존관계 추가 
+			래빗엠큐 : AMQP 브로커
+			메시지 송신과 수신을 쉽게 처리
+		-->
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>rabbitmq</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- 스프링 AMQP 추가 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-amqp</artifactId>
 		</dependency>
 	</dependencies>
 
