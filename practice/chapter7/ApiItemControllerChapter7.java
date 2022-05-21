@@ -15,11 +15,11 @@ import reactor.core.publisher.Mono;
 
 // HTML 대신에 데이터를 응답 본문에 직접 써서 반환하는 스프링 웹 컨트롤러
 @RestController
-public class ApiItemController {
+public class ApiItemControllerChapter7 {
 	
 	private final ItemRepository itemRepository;
 	
-	public ApiItemController(ItemRepository itemRepository) {
+	public ApiItemControllerChapter7(ItemRepository itemRepository) {
 		this.itemRepository = itemRepository;
 	}
 	

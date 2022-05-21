@@ -2,6 +2,8 @@ package com.greglturnquist.hackingspringboot.reactive;
 
 import org.springframework.data.repository.query.ReactiveQueryByExampleExecutor;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 
@@ -30,4 +32,6 @@ ReactiveQueryByExampleExecutor<Item> {
 
 	// search by name OR description
 	Flux<Item> findByNameContainingOrDescriptionContainingAllIgnoreCase(String partialName, String partialDesc);
+
+	Mono<Item> findByName(String name);
 }
